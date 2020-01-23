@@ -1,0 +1,24 @@
+{
+  "mycarsApp": {
+    "incidencia": {
+      "home": {
+        "title": "Incidencias",
+        "createLabel": "Crear nuevo Incidencia",
+        "createOrEditLabel": "Crear o editar Incidencia",
+        "notFound": "Ningún Incidencias encontrado"
+      },
+      "created": "Un nuevo Incidencia ha sido creado con el identificador {{ param }}",
+      "updated": "Un Incidencia ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Incidencia ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Incidencia {{ id }}?"
+      },
+      "detail": {
+        "title": "Incidencia"
+      },
+      "descripcion": "Descripcion",
+      "tipo": "Tipo",
+      "incidenciacoche": "Incidenciacoche"
+    }
+  }
+}

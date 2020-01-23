@@ -1,0 +1,63 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="mycarsApp.incidencia.home.title">Incidencias</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-incidencia" [routerLink]="['/incidencia/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="mycarsApp.incidencia.home.createLabel">
+            Create a new Incidencia
+            </span>
+        </button>
+    </h2>
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="incidencias?.length === 0">
+        <span jhiTranslate="mycarsApp.incidencia.home.notFound">No incidencias found</span>
+    </div>
+    <div class="table-responsive" *ngIf="incidencias?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr>
+            <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
+            <th scope="col" ><span jhiTranslate="mycarsApp.incidencia.descripcion">Descripcion</span></th>
+            <th scope="col" ><span jhiTranslate="mycarsApp.incidencia.tipo">Tipo</span></th>
+            <th scope="col" ><span jhiTranslate="mycarsApp.incidencia.incidenciacoche">Incidenciacoche</span></th>
+            <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let incidencia of incidencias ;trackBy: trackId">
+                <td><a [routerLink]="['/incidencia', incidencia.id, 'view' ]">{{incidencia.id}}</a></td>
+                <td>{{incidencia.descripcion}}</td>
+                <td>{{incidencia.tipo}}</td>
+                <td>
+                    <div *ngIf="incidencia.incidenciacoche">
+                        <a [routerLink]="['/coche', incidencia.incidenciacoche?.id, 'view' ]" >{{incidencia.incidenciacoche?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/incidencia', incidencia.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/incidencia', incidencia.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit" (click)="delete(incidencia)"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

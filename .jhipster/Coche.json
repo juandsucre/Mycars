@@ -1,0 +1,45 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "nombre",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "35"
+        },
+        {
+            "fieldName": "modelo",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "35"
+        },
+        {
+            "fieldName": "precio",
+            "fieldType": "Double",
+            "fieldValidateRules": []
+        },
+        {
+            "fieldName": "vendido",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "fechaventa",
+            "fieldType": "LocalDate"
+        }
+    ],
+    "changelogDate": "20200120125507",
+    "dto": "no",
+    "searchEngine": false,
+    "service": "no",
+    "entityTableName": "coche",
+    "databaseType": "sql",
+    "readOnly": false,
+    "jpaMetamodelFiltering": false,
+    "pagination": "no"
+}

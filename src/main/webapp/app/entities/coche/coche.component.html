@@ -1,0 +1,86 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="mycarsApp.coche.home.title">Coches</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-coche" [routerLink]="['/coche/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="mycarsApp.coche.home.createLabel">
+            Create a new Coche
+            </span>
+        </button>
+    </h2>
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="coches?.length === 0">
+        <span jhiTranslate="mycarsApp.coche.home.notFound">No coches found</span>
+    </div>
+    <div class="table-responsive" *ngIf="coches?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr>
+            <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
+            <th scope="col" ><span jhiTranslate="mycarsApp.coche.nombre">Nombre</span></th>
+            <th scope="col" ><span jhiTranslate="mycarsApp.coche.modelo">Modelo</span></th>
+            <th scope="col" ><span jhiTranslate="mycarsApp.coche.precio">Precio</span></th>
+            <th scope="col" ><span jhiTranslate="mycarsApp.coche.vendido">Vendido</span></th>
+            <th scope="col" ><span jhiTranslate="mycarsApp.coche.fechaventa">Fecha Venta</span></th>
+            <th scope="col" ><span>Dueños</span></th>
+            <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr [ngStyle]="{'background-color': coche.vendido ? 'green':'unset'}" *ngFor="let coche of coches; let index=index;trackBy: trackId">
+                <td><a [routerLink]="['/coche', coche.id, 'view' ]">{{coche.id}}</a></td>
+                <td>
+                        <!--<div [ngStyle]="{'background-color': (comprobarVenta(index)==true ? 'green':'unset')}" >-->
+                        <!--<div [ngClass]="{'forngclass' : comprobarVenta(index)==true}">-->
+                            {{coche.nombre}} 
+                        <!--</div>-->
+                </td>
+                <td>{{coche.modelo}}</td>
+                <td>{{coche.precio}}</td>
+                <td>{{coche.vendido}}</td>
+                <td ><div *ngIf="coche.vendido">
+                        {{coche.fechaventa | date:'mediumDate'}}
+                     </div>
+                </td>
+                <td>{{coche.owner}}</td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button *ngIf="!coche.vendido" type="button" 
+                            class="btn btn-success btn-sm" 
+                            (click)='venderCoche(index)'
+                            [routerLink]="">
+                            <fa-icon [icon]="'shopping-basket'"></fa-icon>
+                            <span class="d-none d-md-inline">Comprar</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/coche', coche.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/coche', coche.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit" (click)="delete(coche)"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            <button type="submit"
+                                [routerLink]="['/coche', 'minigame']"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'gamepad'"></fa-icon>
+                            <span class="d-none d-md-inline" >Jugar</span>
+                        </button>
+            </tbody>
+        </table>
+    </div>
+</div>

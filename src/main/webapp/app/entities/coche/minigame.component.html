@@ -1,0 +1,35 @@
+<div>
+    <h2 id="page-heading">
+        <span>Mini-Juego</span>
+
+    </h2>
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+    <br />
+        
+        <table class="table table-center">
+            <tbody>
+                <tr>
+                    <td (click)="setJugadorEleccion(0)">
+                        <div>
+                            <img [src]="AssetPiedra" alt="Piedra" width="300px">
+                        </div>
+                    </td>
+                    <td (click)="setJugadorEleccion(1)">
+                        <img [src]="AssetPapel" alt='Papel' width="300px">
+                    </td>
+                    <td (click)="setJugadorEleccion(2)">
+                        <img [src]="AssetTijera" alt="Tijeras" width="300px">
+                    </td>
+                <tr>
+                    <td colspan="3">
+                        <button type="buttom" class="btn btn-warning btn-lg btn-block"
+                            (click)="btnJugar()">Jugar</button>
+                    </td>
+                </tr>
+                </tr>
+
+            </tbody>
+        </table>
+    
+</div>
