@@ -16,6 +16,7 @@
     <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200120125507_added_entity_Coche.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200120153034_added_entity_Incidencia.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200123122449_added_entity_Propietario.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20200120153034_added_entity_constraints_Incidencia.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->

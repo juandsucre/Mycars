@@ -9,6 +9,7 @@
         "main": "Entities",
         "coche": "Coche",
         "incidencia": "Incidencia",
+        "propietario": "Propietario",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {
