@@ -11,6 +11,33 @@
     <jhi-alert-error></jhi-alert-error>
     <jhi-alert></jhi-alert>
     <br/>
+    <select name="seleccion" id="seleccion" [(ngModel)]="seleccion">
+        <option value="1">Buscar por nombre</option>
+        <option value="2">Buscar por Propietario</option>
+        <option value="3">Buscar por Fechas</option>
+    </select>
+    <div class="form-group" >
+        <input type="text" class="form-control" name="filtroNombre" id="filtroNombre" [(ngModel)] ="filtroNombre"/>
+        <div class="col-sm-4">
+            <button class="btn btn-primary" (click)=filtrarNombre()> Buscar Nombre</button>
+        </div>
+    </div>
+    <div class="form-group" >
+        <input type="text" class="form-control" name="filtroPropietario" id="filtroPropietario" [(ngModel)] ="filtroPropietario"/>
+        <div class="col-sm-4">
+            <button class="btn btn-primary" (click)=filtrarPropietario()> Buscar Propietario</button>
+        </div>
+    </div>
+    <div class="form-group" >
+        <input type="date" class="form-control" name="filtroFechaInicio" id="filtroFechaInicio" [(ngModel)] ="filtroFechaInicio"/>
+        <input type="date" class="form-control" name="filtroFechaFinal" id="filtroFechaFinal" [(ngModel)] ="filtroFechaFinal"/>
+        <div class="col-sm-4">
+            <button class="btn btn-primary" (click)=filtrarFechas()> Buscar por fechas</button>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <button class="btn btn-primary" (click)=filtrarVendidos()> Filtrar No Vendidos</button>
+    </div>
     <div class="alert alert-warning" *ngIf="coches?.length === 0">
         <span jhiTranslate="mycarsApp.coche.home.notFound">No coches found</span>
     </div>
@@ -28,7 +55,7 @@
             <th scope="col"></th>
             </tr>
             </thead>
-            <tbody>
+            <tbody jhiColor>
             <tr [ngStyle]="{'background-color': coche.vendido ? 'green':'unset'}" *ngFor="let coche of coches; let index=index;trackBy: trackId">
                 <td><a [routerLink]="['/coche', coche.id, 'view' ]">{{coche.id}}</a></td>
                 <td>
@@ -44,13 +71,12 @@
                         {{coche.fechaventa | date:'mediumDate'}}
                      </div>
                 </td>
-                <td>{{coche.owner}}</td>
+                <td>{{coche.propietario?.nombre}}</td>
                 <td class="text-right">
                     <div class="btn-group">
                         <button *ngIf="!coche.vendido" type="button" 
                             class="btn btn-success btn-sm" 
-                            (click)='venderCoche(index)'
-                            [routerLink]="">
+                            (click)='venderCoche(coche)'>
                             <fa-icon [icon]="'shopping-basket'"></fa-icon>
                             <span class="d-none d-md-inline">Comprar</span>
                         </button>

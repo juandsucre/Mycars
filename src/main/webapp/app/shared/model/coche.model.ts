@@ -1,5 +1,5 @@
 import { Moment } from 'moment';
-
+import { IPropietario } from './propietario.model';
 export interface ICoche {
   id?: number;
   nombre?: string;
@@ -7,7 +7,7 @@ export interface ICoche {
   precio?: number;
   vendido?: boolean;
   fechaventa?: Moment;
-  owner?: string;
+  propietario?: IPropietario;
 }
 
 export class Coche implements ICoche {
@@ -18,7 +18,7 @@ export class Coche implements ICoche {
     public precio?: number,
     public vendido?: boolean,
     public fechaventa?: Moment,
-    public owner?: string
+    public propietario?: IPropietario
   ) {
     this.vendido = this.vendido || false;
   }

@@ -6,10 +6,10 @@ import { ICoche } from 'app/shared/model/coche.model';
 import { CocheService } from './coche.service';
 
 @Component({
-  templateUrl: './coche-delete-dialog.component.html'
+  templateUrl: './coche-comprar-dialog.component.html'
 })
-export class CocheDeleteDialogComponent {
-  coches: ICoche;
+export class CocheActualizarDialogComponent {
+  coches: ICoche[] = [];
 
   constructor(protected cocheService: CocheService, public activeModal: NgbActiveModal, protected eventManager: JhiEventManager) {}
 
@@ -17,10 +17,11 @@ export class CocheDeleteDialogComponent {
     this.activeModal.dismiss();
   }
 
-  confirmDelete(id: number): void {
-    this.cocheService.delete(id).subscribe(() => {
-      this.eventManager.broadcast('cocheListModification');
-      this.activeModal.close();
-    });
+  confirmVenta(coche: ICoche): void {
+    // this.cocheService.delete(id).subscribe(() => {
+    const cocheComprado = this.coches[coche];
+    cocheComprado.vendido = true;
+    this.activeModal.close();
+    // });
   }
 }

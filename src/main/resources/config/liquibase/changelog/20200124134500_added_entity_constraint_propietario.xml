@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+        <property name="autoIncrement" value="true"/>
+
+    <!--
+        Added the entity Propietario.
+    -->
+    <changeSet author="liquibase-docs" id="20200124134500-1">
+    <dropColumn
+            columnName="owner"
+            schemaName="mycars"
+            tableName="coche">
+    </dropColumn>
+     <addColumn
+            schemaName="mycars"
+            tableName="coche">
+        <column name="propietario_id" type="bigint">
+        <constraints nullable="true"/>
+        </column>
+    </addColumn>
+	</changeSet>
+    
+    <changeSet id="20200124134500-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="propietario_id"
+                                 baseTableName="coche"
+                                 constraintName="fk_coche_propietario_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="propietario"/>
+
+    </changeSet>
+
+</databaseChangeLog>

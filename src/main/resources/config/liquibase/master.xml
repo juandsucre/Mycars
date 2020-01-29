@@ -21,4 +21,5 @@
     <include file="config/liquibase/changelog/20200120153034_added_entity_constraints_Incidencia.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
     <include file="config/liquibase/changelog/20200122124907_modify_entity_Coche_added_owner.xml" relativeToChangelogFile="false"/>
+     <include file="config/liquibase/changelog/20200124134500_added_entity_constraint_propietario.xml" relativeToChangelogFile="false"/>
 </databaseChangeLog>

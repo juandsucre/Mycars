@@ -4,7 +4,7 @@ import { HttpResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import * as moment from 'moment';
+// import * as moment from 'moment';
 
 import { ICoche, Coche } from 'app/shared/model/coche.model';
 import { CocheService } from './coche.service';
@@ -17,6 +17,7 @@ export class CocheUpdateComponent implements OnInit {
   isSaving = false;
   fechaventaDp: any;
   coche: ICoche | undefined;
+  propietario: undefined;
   editForm = this.fb.group({
     id: [],
     nombre: [null, [Validators.maxLength(35)]],
@@ -33,6 +34,9 @@ export class CocheUpdateComponent implements OnInit {
     this.activatedRoute.data.subscribe(({ coche }) => {
       this.updateForm(coche);
       this.coche = coche;
+      if (!this.propietario) {
+        this.propietario = undefined;
+      }
     });
   }
 
@@ -43,7 +47,7 @@ export class CocheUpdateComponent implements OnInit {
       modelo: coche.modelo,
       precio: coche.precio,
       vendido: coche.vendido,
-      owner: coche.owner,
+      owner: coche.propietario,
       fechaventa: coche.fechaventa
     });
   }
@@ -75,7 +79,7 @@ export class CocheUpdateComponent implements OnInit {
     };
     if (!entity.vendido && (entity.fechaventa || entity.owner)) {
       entity.fechaventa = undefined;
-      entity.owner = null;
+      entity.owner = undefined;
     }
     return entity;
   }
@@ -85,7 +89,7 @@ export class CocheUpdateComponent implements OnInit {
       () => this.onSaveSuccess(),
       () => this.onSaveError()
     );
-    //git prueba
+    // git prueba
   }
 
   protected onSaveSuccess(): void {

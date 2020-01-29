@@ -3,6 +3,8 @@ package com.melit.mycars.domain;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 
@@ -36,10 +38,22 @@ public class Coche implements Serializable {
     @Column(name = "fechaventa")
     private LocalDate fechaventa;
     
-    @Column(name="owner")
-    private String owner;
+//    @Column(name="owner_id")
+    //  private Long owner;
 
-    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("propietario")
+    private Propietario propietario;
+
+    public Propietario getPropietario() {
+		return propietario;
+	}
+
+	public void setPropietario(Propietario propietario) {
+		this.propietario = propietario;
+	}
+
+	// jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
     }
@@ -116,13 +130,6 @@ public class Coche implements Serializable {
     
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
-    public String getOwner() {
-		return owner;
-	}
-
-	public void setOwner(String owner) {
-		this.owner = owner;
-	}
 
 	public Boolean getVendido() {
 		return vendido;

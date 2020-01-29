@@ -72,4 +72,32 @@ export class CocheService {
     }
     return res;
   }
+
+  findByNombre(nombre: string): Observable<EntityArrayResponseType> {
+    // const options = createRequestOption(req);
+    return this.http
+      .get<ICoche[]>(`${this.resourceUrl}/getByNombre/${nombre}`, { observe: 'response' })
+      .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
+  }
+
+  findByPropietario(nombrePropietario: string): Observable<EntityArrayResponseType> {
+    // const options = createRequestOption(req);
+    return this.http
+      .get<ICoche[]>(`${this.resourceUrl}/getAllByNombrePropietario/${nombrePropietario}`, { observe: 'response' })
+      .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
+  }
+
+  findByFechaVenta(fechaInicio: Date, fechaFinal: Date): Observable<EntityArrayResponseType> {
+    // const options = createRequestOption(req);
+    return this.http
+      .get<ICoche[]>(`${this.resourceUrl}/getByFechaVentaBetween/${fechaInicio}/and/${fechaFinal}`, { observe: 'response' })
+      .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
+  }
+
+  findByVendido(): Observable<EntityArrayResponseType> {
+    // const options = createRequestOption(req);
+    return this.http
+      .get<ICoche[]>(`${this.resourceUrl}/getByVendidoFalse`, { observe: 'response' })
+      .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
+  }
 }

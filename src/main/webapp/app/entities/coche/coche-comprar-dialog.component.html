@@ -1,0 +1,26 @@
+<form *ngIf="coche" name="ventaForm" (ngSubmit)="confirmVenta(coche)">
+    <div class="modal-header">
+        <h4 class="modal-title">Confirmar Venta</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <p id="jhi-delete-coche-heading">Quiere comprar este coche?</p>
+        <div class="form-group">
+            <label class="form-control-label" for="field_coche">Coche</label>
+            <input readonly type="text" class="form-control" name="coche" id="field_coche"
+                   formControlName="coche"/>
+            <label class="form-control-label" jhiTranslate="mycarsApp.coche.modelo" for="field_modelo" readonly>Modelo</label>
+            <input type="text" class="form-control" name="modelo" id="field_modelo" formControlName="modelo"/>
+
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button id="jhi-confirm-delete-coche" type="submit" class="btn btn-success">
+            <fa-icon [icon]="'check'"></fa-icon>&nbsp;<span>Comprar</span>
+        </button>
+    </div>
+</form>

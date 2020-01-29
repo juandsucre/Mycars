@@ -16,7 +16,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
-
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -104,6 +105,36 @@ public class CocheResource {
         log.debug("REST request to get Coche : {}", id);
         Optional<Coche> coche = cocheRepository.findById(id);
         return ResponseUtil.wrapOrNotFound(coche);
+    }
+    
+    @GetMapping("/coches/getByNombre/{nombre}")
+    public ResponseEntity<List<Coche>> getByNombre(@PathVariable String nombre) {
+        log.debug("REST request to get Coche : {}", nombre);
+        List<Coche> coche = cocheRepository.findByNombre(nombre);
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(coche));
+    }
+    
+    @GetMapping("/coches/getAllByNombrePropietario/{nombrePropietario}")
+    public ResponseEntity<List<Coche>> getAllByNombrePropietario(@PathVariable String nombrePropietario) {
+        log.debug("REST request to get nombrePropietario : {}", nombrePropietario);
+        List<Coche> coches = cocheRepository.findAllByNombrePropietario(nombrePropietario);
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(coches));
+    }
+    
+    @GetMapping("/coches/getByFechaVentaBetween/{fechaInicio}/and/{fechaFinal}")
+    public ResponseEntity<List<Coche>> getByFechaVentaBetween(@PathVariable LocalDate fechaInicio,@PathVariable LocalDate fechaFinal ) {
+        log.debug("REST request to get fechaInicio : {}", fechaInicio, "REST request to get fechaFinal : {}",fechaFinal);
+        
+        List<Coche> coches = cocheRepository.findByFechaventaBetween(fechaInicio,fechaFinal);
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(coches));
+    }
+
+    @GetMapping("/coches/getByVendidoFalse")
+    public ResponseEntity<List<Coche>> getByVendidoFalse() {
+        log.debug("REST request to get VENDIDO : {}");
+        
+        List<Coche> coches = cocheRepository.findByVendidoFalse();
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(coches));
     }
 
     /**
